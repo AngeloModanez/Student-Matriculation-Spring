@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration UWdeSTdasL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+
+<body class="bg-body-light">
+    <header class="p-3 w-100 bg-dark text-light shadow">
+        <h1 class="display-5 text-center">Cadastro de Alunos</h1>
+    </header>
+    <main>
+        <div class="container">
+            <section>
+                <h1 class="display-6 my-4">Formulario de Cadastro:</h1>
+                <form onsubmit="register(); return false" class="text-start" id="formStudent">
+                    <div class="row row-gap-lg-3">
+                        <label for="inputName" class="col-10 col-lg-1 offset-1 form-label">Nome:</label>
+                        <div class="col-10 col-lg-9 offset-1 offset-lg-0 mb-3 mb-lg-0">
+                            <input type="text" class="form-control shadow-sm" id="inputName" required />
+                        </div>
+                        <label for="inputEmail" class="col-10 col-lg-1 offset-1 form-label">Email:</label>
+                        <div class="col-10 col-lg-4 offset-1 offset-lg-0 mb-3 mb-lg-0">
+                            <input type="email" class="form-control shadow-sm" id="inputEmail" required />
+                        </div>
+                        <label for="phone" class="col-10 col-lg-1 offset-1 offset-lg-0 form-label">Telefone:</label>
+                        <div class="col-10 col-lg-4 offset-1 offset-lg-0 mb-3 mb-lg-0">
+                            <input type="text" class="form-control shadow-sm" id="phone" required />
+                        </div>
+                        <label for="selectCourse" class="col-10 col-lg-1 offset-1 form-label">Curso:</label>
+                        <div class="col-10 col-lg-4 offset-1 offset-lg-0 mb-3 mb-lg-0">
+                            <select class="form-select shadow-sm" id="selectCourse" required>
+                                <option value="">Selecione um curso</option>
+                                <option value="1">Lobotomia em Duendes</option>
+                                <option value="2">Angular & Bootstrap</option>
+                                <option value="3">Magia Wicca</option>
+                            </select>
+                        </div>
+                        <div class="row mb-4 mb-lg-0">
+                            <label class="col-10 col-lg-1 offset-1 form-label">Turno:</label>
+                            <div class="col-10 col-lg-1 offset-1 offset-lg-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioShift" id="1"
+                                        value="option1" checked required />
+                                    <label for="1" class="form-check-label"> Manhã </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioShift" id="2"
+                                        value="option2" />
+                                    <label for="2" class="form-check-label"> Tarde </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioShift" id="3"
+                                        value="option3" />
+                                    <label for="3" class="form-check-label"> Noite </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-secondary col-4 offset-1 offset-lg-2 shadow" type="submit">
+                            Cadastrar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <hr class="my-5" />
+
+            <section>
+                <h1 class="display-6 mb-4 mb-lg-5">Alunos Cadastrados:</h1>
+                <div class="row">
+                    <div class="col-10 mb-4 mb-lg-3 offset-1">
+                        <table class="table table-striped table-bordered" id="studentTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Email</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Telefone</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Curso</th>
+                                    <th scope="col" class="d-none d-lg-table-cell">Turno</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="bg-dark text-center text-white fixed-bottom">
+        @Sistemas P&D
+    </footer>
+
+    <script src="js/script.js "></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script>
+        $("#phone").mask("(99) 99999-9999");
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
