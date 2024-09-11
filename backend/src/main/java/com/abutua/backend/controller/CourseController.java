@@ -18,9 +18,9 @@ import org.springframework.web.server.ResponseStatusException;
 public class CourseController {
 
     private List<Course> courses = Arrays.asList(
-            new Course(1, "ADS"),
-            new Course(2, "ADM"),
-            new Course(3, "TI"));
+            new Course(1, "Admin"),
+            new Course(2, "Sistemas"),
+            new Course(3, "Tecnologia"));
 
     @GetMapping("courses/{id}")
     public ResponseEntity<Course> getCourse(@PathVariable int id) {

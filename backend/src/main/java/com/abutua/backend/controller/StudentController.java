@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @CrossOrigin
@@ -22,7 +23,7 @@ public class StudentController {
 
     private List<Student> students = new ArrayList<>();
 
-    @GetMapping("students")
+    @PostMapping("students")
     public ResponseEntity<Student> save(@RequestBody Student student) {
         student.setId(students.size() + 1);
         students.add(student);

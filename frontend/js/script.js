@@ -1,47 +1,35 @@
-var students = [
-    {
-        id: 1,
-        name: "Juliana Aguilar",
-        email: "juoliveira@gmail.com",
-        phone: "(11) 33347-0987",
-        course: 1,
-        shift: 1
-    },
-    {
-        id: 2,
-        name: "Angelo Ferraz",
-        email: "bananababy.developer@hotmail.com",
-        phone: "(11) 64729-2387",
-        course: 2,
-        shift: 2
-    },
-    {
-        id: 3,
-        name: "Giuseppe Bruni",
-        email: "giugiufyrry@gmail.com",
-        phone: "(11) 99839-2666",
-        course: 3,
-        shift: 3
-    }
-];
-
-var shift = [
+var students = [];
+var courses = [];
+var period = [
     { id: 1, name: "Manhã" },
     { id: 2, name: "Tarde" },
     { id: 3, name: "Noite" }
 ];
-var course = [
-    { id: 1, name: "Lobotomia em Duendes" },
-    { id: 2, name: "Angular & Bootstrap" },
-    { id: 3, name: "Magia Wicca" }
-];
 
 loadStudents();
+loadCourses();
 
 function loadStudents() {
-    for (stud of students) {
-        addNewRow(stud);
-    }
+    $.getJSON("http://localhost:8080/students", (response) => {
+        students = response;
+        for (let stud of response) {
+            addNewRow(stud);
+        }
+    });
+}
+
+function loadCourses() {
+    $.ajax({
+        url: "http://localhost:8080/courses",
+        type: "GET",
+        async: false,
+        success: (response) => {
+            courses = response;
+            for (var course of courses) {
+                document.getElementById("selectCourse").innerHTML += `<option value=${course.id}>${course.name}</option>`
+            }
+        }
+    });
 }
 
 function register() {
@@ -52,13 +40,21 @@ function register() {
         name: document.getElementById("inputName").value,
         email: document.getElementById("inputEmail").value,
         phone: document.getElementById("phone").value,
-        course: parseInt(document.getElementById("selectCourse").value),
-        shift: shiftCheck
+        idCourse: document.getElementById("selectCourse").value,
+        period: shiftCheck
     };
 
-    addNewRow(stud);
-    students.push(stud);
-    document.getElementById("formStudent").reset();
+    $.ajax({
+        url: "http://localhost:8080/students",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(stud),
+        success: (student) => {
+            addNewRow(student);
+            students.push(student);
+            document.getElementById("formStudent").reset();
+        }
+    });
 }
 
 function addNewRow(stud) {
@@ -82,12 +78,12 @@ function addNewRow(stud) {
     cell.className = "d-none d-lg-table-cell";
     cell.appendChild(phoneNode);
 
-    var courseNode = document.createTextNode(course[stud.course - 1].name);
+    var courseNode = document.createTextNode(courses[stud.idCourse - 1].name);
     cell = newRow.insertCell();
     cell.className = "d-none d-lg-table-cell";
     cell.appendChild(courseNode);
 
-    var shiftNode = document.createTextNode(shift[stud.shift - 1].name);
+    var shiftNode = document.createTextNode(period[stud.period - 1].name);
     cell = newRow.insertCell();
     cell.className = "d-none d-lg-table-cell";
     cell.appendChild(shiftNode);
