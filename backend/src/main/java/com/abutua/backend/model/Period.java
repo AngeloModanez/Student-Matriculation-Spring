@@ -1,13 +1,13 @@
 package com.abutua.backend.model;
 
-public class Course {
+public class Period {
   private int id;
   private String name;
 
-  public Course() {
+  public Period() {
   }
 
-  public Course(int id, String name) {
+  public Period(int id, String name) {
     this.id = id;
     this.name = name;
   }
@@ -27,5 +27,4 @@ public class Course {
   public void setName(String name) {
     this.name = name;
   }
-
 }
